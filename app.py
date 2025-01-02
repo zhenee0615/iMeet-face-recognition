@@ -6,7 +6,7 @@ import numpy as np
 from io import BytesIO
 from PIL import Image
 import cv2
-# from deepface import DeepFace
+from deepface import DeepFace
 import requests
 
 app = Flask(__name__)
