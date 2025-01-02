@@ -14,10 +14,6 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-logger.info("Preloading DeepFace models...")
-deepface_model = DeepFace.build_model("Facenet")
-logger.info("DeepFace model loaded successfully.")
-
 @app.route('/')
 def main():
     return "Welcome to the Enhanced Flask API"
