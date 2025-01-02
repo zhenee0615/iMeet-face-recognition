@@ -6,7 +6,7 @@ import numpy as np
 from io import BytesIO
 from PIL import Image
 import cv2
-from deepface import DeepFace
+# from deepface import DeepFace
 import requests
 
 app = Flask(__name__)
@@ -43,31 +43,31 @@ def perform_face_verification():
         
         logger.info("2")
 
-        detected_faces = DeepFace.extract_faces(img_path=frame_rgb, enforce_detection=True, detector_backend='opencv', anti_spoofing=True)
-        if not detected_faces:
-            return jsonify({"error": "No face detected in the frame."})
-        if not detected_faces[0].get("is_real", False):
-            return jsonify({"error": "Detected spoofing attack!"})
+        # detected_faces = DeepFace.extract_faces(img_path=frame_rgb, enforce_detection=True, detector_backend='opencv', anti_spoofing=True)
+        # if not detected_faces:
+        #     return jsonify({"error": "No face detected in the frame."})
+        # if not detected_faces[0].get("is_real", False):
+        #     return jsonify({"error": "Detected spoofing attack!"})
         
-        logger.info("3")
+        # logger.info("3")
 
-        if profile_image_path.startswith('http'):
-            response = requests.get(profile_image_path)
-            if response.status_code != 200:
-                return jsonify({"error": "Unable to fetch profile image from the provided URL."})
-            reference_image = np.array(Image.open(BytesIO(response.content)))
-        else:
-            reference_image = cv2.imread(profile_image_path)
-            if reference_image is None:
-                return jsonify({"error": "Profile image not found at the specified path."})
+        # if profile_image_path.startswith('http'):
+        #     response = requests.get(profile_image_path)
+        #     if response.status_code != 200:
+        #         return jsonify({"error": "Unable to fetch profile image from the provided URL."})
+        #     reference_image = np.array(Image.open(BytesIO(response.content)))
+        # else:
+        #     reference_image = cv2.imread(profile_image_path)
+        #     if reference_image is None:
+        #         return jsonify({"error": "Profile image not found at the specified path."})
         
-        logger.info("4")
+        # logger.info("4")
 
-        reference_image_rgb = cv2.cvtColor(reference_image, cv2.COLOR_BGR2RGB)
+        # reference_image_rgb = cv2.cvtColor(reference_image, cv2.COLOR_BGR2RGB)
 
-        logger.info("5")
+        # logger.info("5")
 
-        comparison_result = DeepFace.verify(img1_path=frame_rgb, img2_path=reference_image_rgb, enforce_detection=True)
+        # comparison_result = DeepFace.verify(img1_path=frame_rgb, img2_path=reference_image_rgb, enforce_detection=True)
 
         logger.info("done")
         return jsonify({
