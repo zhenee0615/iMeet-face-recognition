@@ -61,11 +61,11 @@ def perform_face_verification():
         
         logger.info("2")
 
-        detected_faces = DeepFace.extract_faces(img_path=frame_rgb, enforce_detection=True, detector_backend='opencv')
-        if not detected_faces:
-            return jsonify({"error": "No face detected in the frame."})
+        # detected_faces = DeepFace.extract_faces(img_path=frame_rgb, enforce_detection=True, detector_backend='opencv')
+        # if not detected_faces:
+        #     return jsonify({"error": "No face detected in the frame."})
         
-        logger.info("3")
+        # logger.info("3")
         
         # Handle profile image
         if profile_image_path.startswith('http'):
