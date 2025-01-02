@@ -77,8 +77,12 @@ def perform_face_verification():
             reference_image = cv2.imread(profile_image_path)
             if reference_image is None:
                 return jsonify({"error": "Profile image not found at the specified path."})
+            
+        logger.info("4")
         
         reference_image_rgb = cv2.cvtColor(reference_image, cv2.COLOR_BGR2RGB)
+        
+        logger.info("5")
 
         # Use preloaded model for verification
         comparison_result = DeepFace.verify(
